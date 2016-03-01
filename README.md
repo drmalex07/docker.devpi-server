@@ -20,10 +20,10 @@ Suppose the `devpi-server` is running as a container, and we want to create an i
 
 ```bash
 # Create devpi user named `tester`
-docker run -it --rm --link devpi-server:devpi-server -v $(pwd)/scripts:/var/lib/devpi/scripts local/devpi-server \
-   bash scripts/create-user.sh tester
+docker run -it --rm --link devpi-server:devpi-server \
+   local/devpi-server bash scripts/create-user.sh tester
 
 # Login and create index tester/devel based on root/pypi
-docker run -it --rm --link devpi-server:devpi-server -v $(pwd)/scripts:/var/lib/devpi/scripts local/devpi-server \
-   bash scripts/create-index.sh tester/devel
+docker run -it --rm --link devpi-server:devpi-server \
+   local/devpi-server bash scripts/create-index.sh tester/devel
 ```
