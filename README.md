@@ -55,6 +55,6 @@ username: tester
 password: t3ster
 ```
 
-Upload your package:
+Upload your package to `devel` PyPi repository:
 
     python setup.py sdist upload -r devel
