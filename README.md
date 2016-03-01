@@ -27,3 +27,21 @@ docker run -it --rm --link devpi-server:devpi-server \
 docker run -it --rm --link devpi-server:devpi-server \
    local/devpi-server bash scripts/create-index.sh tester/devel
 ```
+
+We now must configure our `~/.pypirc` to use our local development index as an upload target:
+```ini
+[distutils]
+index-servers = 
+    devel
+
+[devel]
+repository: http://localhost:3141/tester/devel/
+username: tester
+password: tester
+```
+
+Upload a package to `devel` PyPi repository:
+
+    python setup.py sdist upload -r devel
+
+
