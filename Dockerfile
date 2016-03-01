@@ -12,5 +12,7 @@ RUN mkdir /var/lib/devpi/server && chown devpi:devpi /var/lib/devpi/server
 VOLUME /var/lib/devpi
 
 USER devpi
+WORKDIR /var/lib/devpi
 CMD ["devpi-server", "--host=0.0.0.0", "--port=3141"]
+
 
