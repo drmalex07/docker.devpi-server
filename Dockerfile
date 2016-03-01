@@ -14,7 +14,14 @@ WORKDIR /var/lib/devpi
 ADD scripts scripts 
 RUN chown devpi:devpi -R scripts
 
-USER devpi
-CMD ["devpi-server", "--host=0.0.0.0", "--port=3141"]
+ENV PUBLIC_URL=
+ENV PORT=3141
+ADD entrypoint.sh /entrypoint.sh
 
-VOLUME /var/lib/devpi
+USER devpi
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["devpi-server"]
+
+STOPSIGNAL SIGINT
+
+VOLUME /var/lib/devpi/server
